@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 interface Nft {
@@ -27,7 +27,8 @@ const Home = () => {
     }
     setErrorMessage("");
     try {
-      const response = await axios.get(process.env.NFT_DATA_URL!, {
+      const url = process.env.NFT_DATA_URL!;
+      const response = await axios.get(url, {
         params: {
           owner: owner,
           collection: coll,
@@ -36,6 +37,7 @@ const Home = () => {
       setNftData(response.data.nfts);
     } catch (error) {
       console.error("Error fetching NFT data:", error);
+      setNftData([]);
     }
   };
 
@@ -107,7 +109,7 @@ const Home = () => {
             Submit
           </button>
         </form>
-        {nftData.length > 0 && (
+        {nftData.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {nftData.map((nft) => (
               <div key={nft.identifier} className="bg-white p-4 rounded shadow">
@@ -125,10 +127,13 @@ const Home = () => {
                 <h3 className="text-sm font-medium text-gray-700 mt-2">
                   {nft.name}
                 </h3>
-                <p className="text-xs text-gray-500">ID: {nft.identifier}</p>
               </div>
             ))}
           </div>
+        ) : (
+          <p className="text-center text-gray-500">
+            No NFTs found for the provided address and collection.
+          </p>
         )}
       </div>
     </div>

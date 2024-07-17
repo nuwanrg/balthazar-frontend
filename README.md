@@ -1,13 +1,10 @@
-Sure! Here is the updated `README.md` for the frontend repository with instructions for running the project locally and using the localhost endpoint for the backend.
-
-### README.md for Frontend
-
-````markdown
 # Balthazar NFT Viewer - Frontend
 
 ## Overview
 
 Balthazar NFT Viewer is a web application that allows users to view NFT data for a given Ethereum wallet address and collection. This repository contains the frontend built with Next.js and Tailwind CSS. The frontend interacts with the backend service to fetch and display NFT data in a user-friendly manner.
+
+![alt text](image.png)
 
 ## Technologies and APIs
 
@@ -35,6 +32,7 @@ Balthazar NFT Viewer is a web application that allows users to view NFT data for
    git clone https://github.com/nuwanrg/balthazar-frontend.git
    cd balthazar-frontend
    ```
+
 ````
 
 2. **Install Dependencies**
@@ -96,3 +94,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 ```
 
 ```
+````
