@@ -47,8 +47,6 @@ Balthazar NFT Viewer is a web application that allows users to view NFT data for
    NFT_DATA_URL=http://localhost:3001/nft/dataWithCache
    ```
 
-### Running the Project
-
 4. **Build & Run the Frontend**
 
    ```bash
