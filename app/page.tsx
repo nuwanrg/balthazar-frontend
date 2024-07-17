@@ -27,7 +27,7 @@ const Home = () => {
     }
     setErrorMessage("");
     try {
-      const response = await axios.get(process.env.NEXT_PUBLIC_NFT_DATA_URL!, {
+      const response = await axios.get(process.env.NFT_DATA_URL!, {
         params: {
           owner: owner,
           collection: coll,
