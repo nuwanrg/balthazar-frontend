@@ -33,8 +33,6 @@ Balthazar NFT Viewer is a web application that allows users to view NFT data for
    cd balthazar-frontend
    ```
 
-````
-
 2. **Install Dependencies**
 
    ```bash
@@ -90,8 +88,3 @@ Feel free to contribute or raise issues if you encounter any problems!
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-```
-
-```
-````
