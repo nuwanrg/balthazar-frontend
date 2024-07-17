@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 interface Nft {
@@ -14,22 +14,43 @@ const Home = () => {
   const [walletAddress, setWalletAddress] = useState("");
   const [collection, setCollection] = useState("");
   const [nftData, setNftData] = useState<Nft[]>([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = async (event: React.FormEvent) => {
-    event.preventDefault();
+  const isValidEthereumAddress = (address: string) => {
+    return /^0x[a-fA-F0-9]{40}$/.test(address);
+  };
+
+  const fetchNftData = async (owner: string, coll?: string) => {
+    if (!isValidEthereumAddress(owner)) {
+      setErrorMessage("Invalid Ethereum Wallet");
+      return;
+    }
+    setErrorMessage("");
     try {
-      const response = await axios.get(
-        "https://balthazar-backend.onrender.com/nft/data",
-        {
-          params: {
-            owner: walletAddress,
-            collection: collection,
-          },
-        }
-      );
+      const response = await axios.get(process.env.NEXT_PUBLIC_NFT_DATA_URL!, {
+        params: {
+          owner: owner,
+          collection: coll,
+        },
+      });
       setNftData(response.data.nfts);
     } catch (error) {
       console.error("Error fetching NFT data:", error);
+    }
+  };
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    fetchNftData(walletAddress, collection);
+  };
+
+  const handleCollectionChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const selectedCollection = event.target.value;
+    setCollection(selectedCollection);
+    if (walletAddress) {
+      fetchNftData(walletAddress, selectedCollection);
     }
   };
 
@@ -37,7 +58,7 @@ const Home = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="p-4 bg-white rounded shadow-md w-full max-w-4xl">
         <h1 className="text-4xl font-bold text-blue-600 mb-4">
-          Balthazar NFT Demo
+          Balthazar NFT Holdings Viewer
         </h1>
         <form onSubmit={handleSubmit} className="mb-4">
           <div className="mb-4">
@@ -55,6 +76,9 @@ const Home = () => {
               onChange={(e) => setWalletAddress(e.target.value)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black bg-white"
             />
+            {errorMessage && (
+              <p className="mt-1 text-sm text-red-600">{errorMessage}</p>
+            )}
           </div>
           <div className="mb-4">
             <label
@@ -67,7 +91,7 @@ const Home = () => {
               id="collection"
               name="collection"
               value={collection}
-              onChange={(e) => setCollection(e.target.value)}
+              onChange={handleCollectionChange}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm text-black bg-white"
             >
               <option value="">Select a collection</option>
