@@ -59,6 +59,9 @@ Balthazar NFT Viewer is a web application that allows users to view NFT data for
 
    The frontend will be available at `http://localhost:3000`.
 
+Sample screen
+![alt text](image-2.png)
+
 ## Challenges Faced and How They Were Overcome
 
 ### CORS Issues
