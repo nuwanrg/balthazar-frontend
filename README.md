@@ -49,7 +49,11 @@ Balthazar NFT Viewer is a web application that allows users to view NFT data for
 
 ### Running the Project
 
-1. **Run the Frontend**
+4. **Build & Run the Frontend**
+
+   ```bash
+   npm run build
+   ```
 
    ```bash
    npm run dev
