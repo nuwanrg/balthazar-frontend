@@ -6,7 +6,7 @@ import axios from "axios";
 interface Nft {
   identifier: string;
   name: string;
-  image_url: string;
+  display_image_url: string;
   opensea_url: string;
 }
 
@@ -119,7 +119,7 @@ const Home = () => {
                   rel="noopener noreferrer"
                 >
                   <img
-                    src={nft.image_url}
+                    src={nft.display_image_url}
                     alt={nft.name}
                     className="w-full h-auto rounded"
                   />
@@ -127,6 +127,7 @@ const Home = () => {
                 <h3 className="text-sm font-medium text-gray-700 mt-2">
                   {nft.name}
                 </h3>
+                <p className="text-xs text-gray-500">ID: {nft.identifier}</p>
               </div>
             ))}
           </div>

@@ -64,6 +64,11 @@ Sample screen
 
 ## Challenges Faced and How They Were Overcome
 
+### 500 Internal server error from IPFS
+
+- **Challenge**:When the page.tsx attempts to display an NFT image using the image_url from the response payload, IPFS returns a 500 Internal Server Error..
+- **Solution**: Use display_image_url instead image_url when displaying nft image.
+
 ### CORS Issues
 
 - **Challenge**: When integrating the frontend with the backend, CORS issues were encountered.
