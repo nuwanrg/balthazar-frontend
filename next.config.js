@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   env: {
-    NFT_DATA_URL: process.env.NFT_DATA_URL,
+    NEXT_PUBLIC_NFT_DATA_URL: process.env.NEXT_PUBLIC_NFT_DATA_URL,
   },
 };
 
